@@ -5,7 +5,7 @@ import SummaryPost from './SummaryPost'
 function ListPost() {
     return (
         <div className="post-list section">
-            <Link to={'/post/'}>
+            <Link to={'/post/3'}>
                 <SummaryPost />
             </Link>
         </div>
