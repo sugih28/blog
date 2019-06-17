@@ -2,7 +2,7 @@
   "name": "blog-ikp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sugih28.github.com/blog",
+  "homepage": "https://sugih28.github.com/blog/",
   "dependencies": {
     "gh-pages": "^2.0.1",
     "react": "^16.8.6",

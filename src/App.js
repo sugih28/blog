@@ -7,7 +7,7 @@ import CreatePost from './components/post/CreatePost';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/blog'>
       <div className="App">
         <Navbar />
         <Switch>
