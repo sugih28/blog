@@ -1,14 +1,15 @@
 import React from 'react';
 import Navbar from './components/layout/Navbar'
-import {BrowserRouter, Route} from 'react-router-dom'
+import {HashRouter, Route} from 'react-router-dom'
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
         <Navbar />
+        <h2>Hai</h2>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
