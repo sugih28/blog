@@ -7,7 +7,7 @@ function Navbar() {
     return (
         <nav className="nav-wrapper grey darken-3">
             <div className="container">
-                <Link to="/" className="brand-logo">Project IKP</Link>
+                <Link to="/" className="brand-logo">Blog IKP</Link>
                 <SignInLink />
                 <SignOutLink />
             </div>
