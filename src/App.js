@@ -5,6 +5,7 @@ import Home from './components/page/Home'
 import SignIn from './components/auth/SignIn'
 import DetailPost from './components/post/DetailPost';
 import CreatePost from './components/post/CreatePost';
+import EditPost from './components/post/EditPost';
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/blog/" component={Home} />
-          <Route exact path="/blog/signin" component={SignIn} />
+          <Route path="/blog/signin" component={SignIn} />
           <Route path="/blog/post/create" component={CreatePost} />
+          <Route path="/blog/post/:id/edit" component={EditPost} />
           <Route path="/blog/post/:id" component={DetailPost} />
         </Switch>
       </div>
