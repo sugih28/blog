@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {createPost} from '../../store/actions/postAction'
+import {Redirect} from 'react-router-dom'
 
 export class CreatePost extends Component {
     state = {
@@ -21,6 +22,10 @@ export class CreatePost extends Component {
     }
 
     render() {
+        if (!this.props.user) {
+            return <Redirect to="/blog/signin"/>
+        }
+
         return (
             <div className="container">
                 <form onSubmit={this.submitHandle} className="grey darken-3">
@@ -46,7 +51,8 @@ export class CreatePost extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        posts:state.post.posts
+        posts:state.post.posts,
+        user:state.auth.user
     }
 }
 

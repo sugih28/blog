@@ -3,11 +3,9 @@ import ListPost from '../post/ListPost'
 import SideBar from '../layout/SideBar'
 import {connect} from 'react-redux'
 import { getPost } from '../../store/actions/postAction';
+import {Redirect} from 'react-router-dom'
 
 export class Home extends Component {
-    // componentDidMount() {
-    //     this.props.getPost();
-    // }
     render() {
         return (
             <div className="dashboard container">
@@ -26,7 +24,8 @@ export class Home extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.post.posts
+        posts: state.post.posts,
+        user: state.auth.user
     }
 }
 

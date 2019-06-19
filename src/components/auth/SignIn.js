@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import {login} from '../../store/actions/authAction'
+import {Redirect} from 'react-router-dom'
 
 export class SignIn extends Component {
     state = {
@@ -14,10 +17,22 @@ export class SignIn extends Component {
 
     submitHandle = (e) => {
         e.preventDefault();
-        console.log(this.state)
+        this.props.login(this.state)
     }
 
     render() {
+        if (this.props.user) {
+            return <Redirect to="/blog/" />
+        }
+
+        const alertError = this.props.authError ? (
+            <span className="alert alert-danger">
+                <center>{this.props.authError}</center>
+            </span>
+        ) : (
+            null
+        )
+
         return (
             <div className="container">
                 <form onSubmit={this.submitHandle} className="grey darken-3">
@@ -35,10 +50,24 @@ export class SignIn extends Component {
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0">Sign In</button>
                     </div>
+                    {alertError}
                 </form>
             </div>
         )
     }
 }
 
-export default SignIn
+const mapStateToProps =(state) => {
+    return {
+        authError: state.auth.authError,
+        user: state.auth.user
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login : (user) => {dispatch(login(user))}
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)

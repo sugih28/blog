@@ -5,7 +5,7 @@ function ListPost({posts}) {
     return (
         <div className="post-list section">
             {
-                posts && posts.map(post => {
+                posts && posts.reverse().map(post => {
                     return (
                         <SummaryPost post={post} key={post.id}/>
                     )

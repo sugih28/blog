@@ -2,17 +2,43 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import SignInLink from './SignInLink'
 import SignOutLink from './SignOutLink'
+import {connect} from 'react-redux'
+import {checkAuth} from '../../store/actions/authAction'
 
-function Navbar() {
-    return (
-        <nav className="nav-wrapper grey darken-3">
-            <div className="container">
-                <Link to="/blog/" className="brand-logo">Blog IKP</Link>
-                <SignInLink />
-                <SignOutLink />
-            </div>
-        </nav>
-    )
+class Navbar extends React.Component {
+    constructor(props) {
+        super(props)
+        props.checkAuth(sessionStorage.getItem("user_token"))
+    }    
+
+    render() {
+        const authLink = (this.props.user) ? (
+            <SignInLink />
+        ) : (
+            <SignOutLink />
+        )
+
+        return (
+            <nav className="nav-wrapper grey darken-3">
+                <div className="container">
+                    <Link to="/blog/" className="brand-logo">Blog IKP</Link>
+                    {authLink}
+                </div>
+            </nav>
+        )
+    }
 }
 
-export default Navbar
+const mapStateToProps = (state) => {
+    return {
+        user : state.auth.user
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        checkAuth : (token) => dispatch(checkAuth(token))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Navbar)
