@@ -1,9 +1,5 @@
 const initState = {
-    posts:[
-        {id:1, title:'Find Some Ex', content:'this is a Content of Find Some Ex Post'},
-        {id:2, title:'Find Some Golf', content:'this is a Content of Find Some Ex Golf'},
-        {id:3, title:'Find Some Wolf', content:'this is a Content of Find Some Ex Wolf'},
-    ]
+    posts:[]
 }
 
 const postReducer = (state = initState, action) => {
@@ -24,8 +20,6 @@ const postReducer = (state = initState, action) => {
 
         case "EDIT_POST":
             console.log('Edited : ',action.post.id)
-            let index = action.index
-            state.posts[index] = action.post
             return {
                 ...state,
             }

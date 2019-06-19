@@ -14,6 +14,22 @@ code {
     monospace;
 }
 
+.collection {
+  border-color: #333;
+}
+
+.collection a {
+  border-color: #333 !important;
+}
+
+/* .collection a img{
+  height: 30px;
+  width: auto;
+  position: absolute;
+  left: -13px;
+  opacity: 5%;
+} */
+
 form {
   padding: 20px;
   margin-top: 23px;

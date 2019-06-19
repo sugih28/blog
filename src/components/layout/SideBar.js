@@ -3,7 +3,12 @@ import React from 'react';
 const SideBar = () => {
     return(
         <div>
-            <p>Sidebar</p>
+            <p>Follow Me</p>
+            <div className="card grey darken-3">
+                <div className="card-content">
+
+                </div>
+            </div>
         </div>
     )
 }

@@ -18,7 +18,7 @@ class DetailPost extends React.Component {
         const {post} = this.props;
 
         if(post) {
-                const suntingLink = (this.props.user) ? (<Link to={"/blog/post/"+post.id+"/edit"}>Sunting</Link>) : null
+                const editLink = (this.props.user) ? (<Link to={"/blog/post/"+post.id+"/edit"}>EDIT</Link>) : null
                 const deleteLink =  (this.props.user) ? (<a href="#" onClick={this.clickHandle}>Delete</a>) : null
             return(
                 <div className="container section project-detail">
@@ -26,7 +26,7 @@ class DetailPost extends React.Component {
                         <div className="card-content grey darken-3">
                             <span className="card-title">{post.title}</span>
                             <p>{post.content}</p>
-                            | {suntingLink}
+                            | {editLink}
                         </div>
                         <div className="card-action grey darken-3 grey-text text-darken-1">
                             <div>Posted By Me | {deleteLink}</div>

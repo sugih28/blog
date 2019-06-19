@@ -8,7 +8,7 @@ function SummaryPost({post}) {
                 <Link to={'/blog/post/'+post.id}>
                     <span className="card-title">{post.title}</span>
                 </Link>
-                <p>Post By Me</p>
+                <p>Post By Me | <Link to={"/blog/post/"+post.id+"/edit"} >EDIT</Link></p>
                 <p className="grey-text">28th June 2019</p>
             </div>
         </div>

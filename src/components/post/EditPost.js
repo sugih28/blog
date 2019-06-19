@@ -12,7 +12,6 @@ export class EditPost extends Component {
 
     componentDidMount() {
         this.setState({
-            id:this.props.match.params.id,
             title:this.props.post.title,
             content:this.props.post.content
         })
@@ -28,7 +27,7 @@ export class EditPost extends Component {
     submitHandle = (e) => {
         e.preventDefault()
         const index = this.props.posts.indexOf(this.props.post)
-        this.props.editPost(this.state,index)
+        this.props.editPost(this.state,this.props.match.params.id)
         this.props.history.push("/blog")
     }
 
