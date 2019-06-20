@@ -4,12 +4,9 @@ const initState = {
 
 const postReducer = (state = initState, action) => {
     switch (action.type) {
-        case "CREATE_POST":
-            action.post.id = Math.random() 
-            let createPosts = [...state.posts, action.post]
+        case "CREATE_POST":            
             return {
                 ...state,
-                posts:createPosts
             }
 
         case "SET_POST":

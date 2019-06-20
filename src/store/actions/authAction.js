@@ -5,6 +5,7 @@ export function login(user) {
         const url = "https://reqres.in/api/login"
         axios.post(url,user)
             .then(res => {
+                console.log(user)
                 dispatch({type:"LOGIN_SUCCESS",user:res.data})
             }).catch(err => {
                 dispatch({type:"LOGIN_FAILED",err})

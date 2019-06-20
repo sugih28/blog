@@ -1,8 +1,10 @@
 import axios from 'axios'
 
+const url = "https://apiblogikp.000webhostapp.com/api/post/";
+
 export function getPost() {
     return (dispatch) => {
-        axios.get("https://apiblogikp.000webhostapp.com/api/post/read.php")
+        axios.get(url+"read.php")
             .then((res) => {
                 dispatch(setPost(res.data.posts))
             })
@@ -18,13 +20,9 @@ export function setPost(posts) {
 
 export function createPost(post) {
     return (dispatch) => {
-        axios({
-            method: "POST",
-            url:"https://apiblogikp.000webhostapp.com/api/post/create.php",
-            data: post
-        })
+        axios.post(url+"create.php",post)
         .then(res => {
-            console.log(res.data.message)
+            console.log(post)
             dispatch({type: "CREATE_POST", post})
         }).catch(err => {
             console.log(err)
@@ -34,7 +32,7 @@ export function createPost(post) {
 
 export function editPost(post,id) {
     return (dispatch) => {
-        axios.post("https://apiblogikp.000webhostapp.com/api/post/edit.php?id="+id,post)
+        axios.post(url+"edit.php?id="+id,post)
             .then(res => {
                 dispatch({type:"EDIT_POST",post})
             }).catch(err => {
@@ -45,7 +43,7 @@ export function editPost(post,id) {
 
 export function deletePost(id) {
     return (dispatch) => {
-        axios.get("https://apiblogikp.000webhostapp.com/api/post/delete.php?id="+id)
+        axios.get(url+"delete.php?id="+id)
             .then(res => {
                 console.log(res.data.message)
                 dispatch({type:'DELETE_POST',id})

@@ -5,8 +5,8 @@ import {Redirect} from 'react-router-dom'
 
 export class CreatePost extends Component {
     state = {
-        title:null,
-        content:null
+        title:'',
+        content:''
     }
 
     changeHandle = (e) => {
