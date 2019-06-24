@@ -12,7 +12,7 @@ class Navbar extends React.Component {
     }    
 
     render() {
-        const authLink = (this.props.user) ? (
+        const authLink = (this.props.auth.uid) ? (
             <SignInLink />
         ) : (
             <SignOutLink />
@@ -30,8 +30,9 @@ class Navbar extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
-        user : state.auth.user
+        auth : state.firebase.auth,
     }
 }
 

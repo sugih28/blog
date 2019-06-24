@@ -7,10 +7,29 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './store/reducers/rootReducer';
+import { compose } from 'redux'
+import { reactReduxFirebase } from 'react-redux-firebase'
+import firebase from 'firebase'
 
-const store = createStore(rootReducer,
-    applyMiddleware(thunk)
+// react-redux-firebase options
+const config = {
+    userProfile: 'users', // firebase root where user profiles are stored
+    enableLogging: false, // enable/disable Firebase's database logging
+}
+
+// Add redux Firebase to compose
+const createStoreWithFirebase = compose(
+    reactReduxFirebase(firebase, config)
+)(createStore)
+
+// Create store with reducers and initial state
+const store = createStoreWithFirebase(rootReducer,
+    applyMiddleware(thunk)    
 )
+
+// const store = createStore(rootReducer,
+//     applyMiddleware(thunk)
+// )
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

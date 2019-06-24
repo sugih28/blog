@@ -12,7 +12,8 @@ export function getPost() {
                 newState.push({
                     id:post,
                     title: posts[post].title,
-                    content: posts[post].content
+                    content: posts[post].content,
+                    date: posts[post].date
                 })
             }
             dispatch(setPost(newState))

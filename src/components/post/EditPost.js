@@ -31,7 +31,7 @@ export class EditPost extends Component {
     }
 
     render() {
-        if (!this.props.user) {
+        if (!this.props.auth.uid) {
             return <Redirect to="/blog/signin"/>
         }
 
@@ -66,7 +66,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         post:post,
         posts:posts,
-        user:state.auth.user
+        auth:state.firebase.auth
     }
 }
 

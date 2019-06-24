@@ -21,7 +21,7 @@ export class SignIn extends Component {
     }
 
     render() {
-        if (this.props.user) {
+        if (this.props.auth.uid) {
             return <Redirect to="/blog/" />
         }
 
@@ -60,7 +60,7 @@ export class SignIn extends Component {
 const mapStateToProps =(state) => {
     return {
         authError: state.auth.authError,
-        user: state.auth.user
+        auth: state.firebase.auth
     }
 }
 

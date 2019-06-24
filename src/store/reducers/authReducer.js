@@ -6,12 +6,11 @@ const initState = {
 const authReducer = (state = initState, action) => {
     switch (action.type) {
         case "LOGIN_SUCCESS":
-            console.log("Logged In : ",action.user)
-            sessionStorage.setItem("user_token",action.user.token)
+            console.log("Logged In : ")
+            // sessionStorage.setItem("user_token",action.user.token)
             return {
                 ...state,
                 authError:false,
-                user:action.user.token
             }
         case "LOGIN_FAILED":
             console.log("Login Failed ",action.err)
@@ -21,10 +20,9 @@ const authReducer = (state = initState, action) => {
             }
         case "LOGOUT_SUCCESS":
             console.log("Logout Success")
-            sessionStorage.removeItem("user_token")
+            // sessionStorage.removeItem("user_token")
             return {
                 ...state,
-                user:null   
             }
         case "CHECK_AUTH" :
             return {

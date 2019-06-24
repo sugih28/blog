@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 class DetailPost extends React.Component {
     clickHandle = (e) => {
         e.preventDefault()
-        if (!this.props.user) {
+        if (!this.props.auth.uid) {
             this.props.history.push("/blog/signin")
         } else {
             this.props.deletePost(this.props.match.params.id)
@@ -16,10 +16,9 @@ class DetailPost extends React.Component {
 
     render() {
         const {post} = this.props;
-
         if(post) {
-                const editLink = (this.props.user) ? (<Link to={"/blog/post/"+post.id+"/edit"}>EDIT</Link>) : null
-                const deleteLink =  (this.props.user) ? (<a href="#" onClick={this.clickHandle}>Delete</a>) : null
+                const editLink = (this.props.auth.uid) ? (<Link to={"/blog/post/"+post.id+"/edit"}>EDIT</Link>) : null
+                const deleteLink =  (this.props.auth.uid) ? (<a href="#" onClick={this.clickHandle}>Delete</a>) : null
             return(
                 <div className="container section project-detail">
                     <div className="card z-depth-0">
@@ -30,7 +29,7 @@ class DetailPost extends React.Component {
                         </div>
                         <div className="card-action grey darken-3 grey-text text-darken-1">
                             <div>Posted By Me | {deleteLink}</div>
-                            <div>28th June 2019</div>
+                            <div>{post.date}</div>
                         </div>
                     </div>
                 </div>
@@ -52,7 +51,7 @@ const mapStateToProps = (state,ownProps) => {
     })
     return{
         post:post,
-        user:state.auth.user
+        auth:state.firebase.auth
     }
 }
 

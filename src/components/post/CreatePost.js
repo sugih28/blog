@@ -6,8 +6,20 @@ import {Redirect} from 'react-router-dom'
 export class CreatePost extends Component {
     state = {
         title:'',
-        content:''
+        content:'',
+        date: '',
     }
+
+    componentDidMount() {
+        let d = new Date()
+        const month = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des']
+        const date = d.getDate() +' '+ month[d.getMonth()] + ' ' + d.getFullYear()
+
+        this.setState({
+            date: date
+        })
+    }
+    
 
     changeHandle = (e) => {
         this.setState({
@@ -22,7 +34,7 @@ export class CreatePost extends Component {
     }
 
     render() {
-        if (!this.props.user) {
+        if (!this.props.auth.uid) {
             return <Redirect to="/blog/signin"/>
         }
 
@@ -52,7 +64,7 @@ export class CreatePost extends Component {
 const mapStateToProps = (state) => {
     return {
         posts:state.post.posts,
-        user:state.auth.user
+        auth:state.firebase.auth
     }
 }
 
