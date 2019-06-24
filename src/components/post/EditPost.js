@@ -5,7 +5,6 @@ import {Redirect} from 'react-router-dom'
 
 export class EditPost extends Component {
     state = {
-        id:'',
         title:'',
         content:''
     }    

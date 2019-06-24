@@ -1,13 +1,22 @@
-import axios from 'axios'
+import {dbRef} from '../../config/firebase'
 
-const url = "https://apiblogikp.000webhostapp.com/api/post/";
+const postRef = dbRef.child('posts')
 
 export function getPost() {
     return (dispatch) => {
-        axios.get(url+"read.php")
-            .then((res) => {
-                dispatch(setPost(res.data.posts))
-            })
+        postRef.on('value', snap => {
+            let posts = snap.val()
+            let newState = []
+
+            for (let post in posts) {
+                newState.push({
+                    id:post,
+                    title: posts[post].title,
+                    content: posts[post].content
+                })
+            }
+            dispatch(setPost(newState))
+        })
     }
 }
 
@@ -20,21 +29,20 @@ export function setPost(posts) {
 
 export function createPost(post) {
     return (dispatch) => {
-        axios.post(url+"create.php",post)
-        .then(res => {
-            console.log(post)
-            dispatch({type: "CREATE_POST", post})
-        }).catch(err => {
-            console.log(err)
-        })
+        postRef.push(post)
+            .then(res => {
+                dispatch({type: 'CREATE_POST',post})
+            }).catch(err => {
+                console.log(err)
+            })
     }
 }
 
 export function editPost(post,id) {
     return (dispatch) => {
-        axios.post(url+"edit.php?id="+id,post)
+        postRef.child(id).update(post)
             .then(res => {
-                dispatch({type:"EDIT_POST",post})
+                dispatch({type: 'EDIT_POST',post,id})
             }).catch(err => {
                 console.log(err)
             })
@@ -43,10 +51,9 @@ export function editPost(post,id) {
 
 export function deletePost(id) {
     return (dispatch) => {
-        axios.get(url+"delete.php?id="+id)
+        postRef.child(id).remove()
             .then(res => {
-                console.log(res.data.message)
-                dispatch({type:'DELETE_POST',id})
+                dispatch({type: 'DELETE_POST',id})
             }).catch(err => {
                 console.log(err)
             })

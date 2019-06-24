@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {deletePost} from '../../store/actions/postAction'
+import {deletePost, getPost} from '../../store/actions/postAction'
 import {Link} from 'react-router-dom'
 
 class DetailPost extends React.Component {
@@ -36,8 +36,10 @@ class DetailPost extends React.Component {
                 </div>
             )
         } else {
+            this.props.getPost()
+            
             return (
-                <div className="container center">Project Loading...</div>
+                <div className="container center">Post Loading...</div>
             )
         }
     }
@@ -56,7 +58,8 @@ const mapStateToProps = (state,ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deletePost: (id) => dispatch(deletePost(id))
+        deletePost: (id) => dispatch(deletePost(id)),
+        getPost: () => dispatch(getPost())
     }
 }
 
